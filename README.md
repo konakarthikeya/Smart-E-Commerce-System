@@ -94,6 +94,4 @@ The main purpose of this project is to demonstrate how Data Structures and Algor
 
 The project focuses on understanding and implementing DSA concepts rather than creating a simple CRUD application.
 
-## Author
 
-Kona Karthikeya
