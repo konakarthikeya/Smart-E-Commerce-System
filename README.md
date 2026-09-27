@@ -6,6 +6,14 @@ The Smart E-Commerce Product Search and Recommendation System is a console-based
 
 The project demonstrates the practical use of Data Structures and Algorithms in an e-commerce environment. It provides product management, searching, sorting, shopping cart operations, purchase history, customer management, and product recommendations.
 
+## Team Members
+
+1. Sowjanya
+2. Jaswanth
+3. Karthikeya
+4. Keerthi
+
+
 ## Features
 
 * Add and display products
