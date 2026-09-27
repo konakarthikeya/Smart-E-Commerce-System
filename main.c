@@ -171,11 +171,10 @@ int main()
         printf("7. Purchase History\n");
         printf("8. Recommendations\n");
         printf("9. Customer Management\n");
-        printf("10. Display BST (Inorder)\n");
-        printf("11. Delete Product from BST\n");
-        printf("12. Update Product\n");
-        printf("13. Delete Product\n");
-        printf("0. Exit\n\n");
+         printf("10. Display BST (Inorder)\n"); 
+        printf("11. Update Product\n"); 
+        printf("12. Delete Product\n"); 
+        printf("0. Exit\n\n"); 
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -183,61 +182,66 @@ int main()
         switch(choice)
         {
             case 1:
+{
+    int newId;
+    int duplicate;
+
+    if(productCount < 100)
+    {
+        do
+        {
+            duplicate = 0;
+
+            printf("\nEnter Product ID: ");
+            scanf("%d", &newId);
+
+            for(int i = 0; i < productCount; i++)
             {
-                int newId;
-                int duplicate = 0;
-
-                if(productCount < 100)
+                if(products[i].id == newId)
                 {
-                    printf("\nEnter Product ID: ");
-                    scanf("%d", &newId);
-
-                    for(int i = 0; i < productCount; i++)
-                    {
-                        if(products[i].id == newId)
-                        {
-                            duplicate = 1;
-                            break;
-                        }
-                    }
-
-                    if(duplicate == 1)
-                    {
-                        printf("\nProduct ID already exists!\n");
-                    }
-                    else
-                    {
-                        products[productCount].id = newId;
-
-                        printf("Enter Product Name: ");
-                        scanf("%s", products[productCount].name);
-
-                        printf("Enter Category: ");
-                        scanf("%s", products[productCount].category);
-
-                        printf("Enter Price: ");
-                        scanf("%f", &products[productCount].price);
-
-                        printf("Enter Rating: ");
-                        scanf("%f", &products[productCount].rating);
-
-                        printf("Enter Stock: ");
-                        scanf("%d", &products[productCount].stock);
-
-                        root = insertBST(root, newId);
-
-                        productCount++;
-
-                        printf("\nProduct added successfully!\n");
-                    }
+                    duplicate = 1;
+                    break;
                 }
-                else
-                {
-                    printf("\nProduct storage is full!\n");
-                }
-
-                break;
             }
+
+            if(duplicate == 1)
+            {
+                printf("\nProduct ID already exists!\n");
+                printf("Please enter a different Product ID.\n");
+            }
+
+        } while(duplicate == 1);
+
+        products[productCount].id = newId;
+
+        printf("Enter Product Name: ");
+        scanf("%s", products[productCount].name);
+
+        printf("Enter Category: ");
+        scanf("%s", products[productCount].category);
+
+        printf("Enter Price: ");
+        scanf("%f", &products[productCount].price);
+
+        printf("Enter Rating: ");
+        scanf("%f", &products[productCount].rating);
+
+        printf("Enter Stock: ");
+        scanf("%d", &products[productCount].stock);
+
+        root = insertBST(root, newId);
+
+        productCount++;
+
+        printf("\nProduct added successfully!\n");
+    }
+    else
+    {
+        printf("\nProduct storage is full!\n");
+    }
+
+    break;
+}
 
             case 2:
                 if(productCount == 0)
@@ -264,266 +268,282 @@ int main()
 
                 break;
 
-            case 3:
-            {
-                int searchChoice;
-                int searchId;
-                char searchName[50];
-                char searchCategory[30];
-                int found;
+           case 3:
+{
+    int searchChoice;
 
-                printf("\n========================================\n");
-                printf("           SEARCH PRODUCTS\n");
-                printf("========================================\n\n");
+    do
+    {
+        int searchId;
+        char searchName[50];
+        char searchCategory[30];
+        int found;
 
-                printf("1. Search by Product ID\n");
-                printf("2. Search by Product Name\n");
-                printf("3. Search by Category\n");
-                printf("4. Search by Product ID using BST\n");
-                printf("0. Back\n\n");
+        printf("\n========================================\n");
+        printf("           SEARCH PRODUCTS\n");
+        printf("========================================\n\n");
 
-                printf("Enter your choice: ");
-                scanf("%d", &searchChoice);
+        printf("1. Search by Product ID\n");
+        printf("2. Search by Product Name\n");
+        printf("3. Search by Category\n");
+        printf("4. Search by Product ID using BST\n");
+        printf("0. Back\n\n");
 
-                switch(searchChoice)
+        printf("Enter your choice: ");
+        scanf("%d", &searchChoice);
+
+        switch(searchChoice)
+        {
+            case 1:
+                printf("\nEnter Product ID: ");
+                scanf("%d", &searchId);
+
+                found = 0;
+
+                for(int i = 0; i < productCount; i++)
                 {
-                    case 1:
-                        printf("\nEnter Product ID: ");
-                        scanf("%d", &searchId);
-
-                        found = 0;
-
-                        for(int i = 0; i < productCount; i++)
-                        {
-                            if(products[i].id == searchId)
-                            {
-                                printf("\nProduct Found!\n");
-                                printf("ID       : %d\n", products[i].id);
-                                printf("Name     : %s\n", products[i].name);
-                                printf("Category : %s\n", products[i].category);
-                                printf("Price    : %.2f\n", products[i].price);
-                                printf("Rating   : %.1f\n", products[i].rating);
-                                printf("Stock    : %d\n", products[i].stock);
-
-                                found = 1;
-                                break;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nProduct not found.\n");
-                        }
-
-                        break;
-
-                    case 2:
-                        printf("\nEnter Product Name: ");
-                        scanf("%s", searchName);
-
-                        found = 0;
-
-                        for(int i = 0; i < productCount; i++)
-                        {
-                            if(strcmp(products[i].name, searchName) == 0)
-                            {
-                                printf("\nProduct Found!\n");
-                                printf("ID       : %d\n", products[i].id);
-                                printf("Name     : %s\n", products[i].name);
-                                printf("Category : %s\n", products[i].category);
-                                printf("Price    : %.2f\n", products[i].price);
-                                printf("Rating   : %.1f\n", products[i].rating);
-                                printf("Stock    : %d\n", products[i].stock);
-
-                                found = 1;
-                                break;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nProduct not found.\n");
-                        }
-
-                        break;
-
-                    case 3:
-                        printf("\nEnter Category: ");
-                        scanf("%s", searchCategory);
-
-                        found = 0;
-
-                        for(int i = 0; i < productCount; i++)
-                        {
-                            if(strcmp(products[i].category, searchCategory) == 0)
-                            {
-                                printf("\nProduct Found!\n");
-                                printf("ID       : %d\n", products[i].id);
-                                printf("Name     : %s\n", products[i].name);
-                                printf("Category : %s\n", products[i].category);
-                                printf("Price    : %.2f\n", products[i].price);
-                                printf("Rating   : %.1f\n", products[i].rating);
-                                printf("Stock    : %d\n", products[i].stock);
-
-                                found = 1;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nNo products found in this category.\n");
-                        }
-
-                        break;
-
-                    case 4:
+                    if(products[i].id == searchId)
                     {
-                        struct BSTNode *result;
+                        printf("\nProduct Found!\n");
+                        printf("ID       : %d\n", products[i].id);
+                        printf("Name     : %s\n", products[i].name);
+                        printf("Category : %s\n", products[i].category);
+                        printf("Price    : %.2f\n", products[i].price);
+                        printf("Rating   : %.1f\n", products[i].rating);
+                        printf("Stock    : %d\n", products[i].stock);
 
-                        printf("\nEnter Product ID: ");
-                        scanf("%d", &searchId);
-
-                        result = searchBST(root, searchId);
-
-                        if(result == NULL)
-                        {
-                            printf("\nProduct not found.\n");
-                        }
-                        else
-                        {
-                            for(int i = 0; i < productCount; i++)
-                            {
-                                if(products[i].id == result->productId)
-                                {
-                                    printf("\nProduct Found using BST!\n");
-                                    printf("ID       : %d\n", products[i].id);
-                                    printf("Name     : %s\n", products[i].name);
-                                    printf("Category : %s\n", products[i].category);
-                                    printf("Price    : %.2f\n", products[i].price);
-                                    printf("Rating   : %.1f\n", products[i].rating);
-                                    printf("Stock    : %d\n", products[i].stock);
-                                    break;
-                                }
-                            }
-                        }
-
+                        found = 1;
                         break;
                     }
+                }
 
-                    case 0:
-                        printf("\nReturning to main menu...\n");
-                        break;
-
-                    default:
-                        printf("\nInvalid choice!\n");
+                if(found == 0)
+                {
+                    printf("\nProduct not found.\n");
                 }
 
                 break;
-            }
+
+
+            case 2:
+                printf("\nEnter Product Name: ");
+                scanf("%s", searchName);
+
+                found = 0;
+
+                for(int i = 0; i < productCount; i++)
+                {
+                    if(strcmp(products[i].name, searchName) == 0)
+                    {
+                        printf("\nProduct Found!\n");
+                        printf("ID       : %d\n", products[i].id);
+                        printf("Name     : %s\n", products[i].name);
+                        printf("Category : %s\n", products[i].category);
+                        printf("Price    : %.2f\n", products[i].price);
+                        printf("Rating   : %.1f\n", products[i].rating);
+                        printf("Stock    : %d\n", products[i].stock);
+
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if(found == 0)
+                {
+                    printf("\nProduct not found.\n");
+                }
+
+                break;
+
+
+            case 3:
+                printf("\nEnter Category: ");
+                scanf("%s", searchCategory);
+
+                found = 0;
+
+                for(int i = 0; i < productCount; i++)
+                {
+                    if(strcmp(products[i].category, searchCategory) == 0)
+                    {
+                        printf("\nProduct Found!\n");
+                        printf("ID       : %d\n", products[i].id);
+                        printf("Name     : %s\n", products[i].name);
+                        printf("Category : %s\n", products[i].category);
+                        printf("Price    : %.2f\n", products[i].price);
+                        printf("Rating   : %.1f\n", products[i].rating);
+                        printf("Stock    : %d\n", products[i].stock);
+
+                        found = 1;
+                    }
+                }
+
+                if(found == 0)
+                {
+                    printf("\nNo products found in this category.\n");
+                }
+
+                break;
+
 
             case 4:
             {
-                int sortChoice;
-                int i, j, minIndex;
-                struct Product temp;
+                struct BSTNode *result;
 
-                printf("\n========================================\n");
-                printf("           SORT PRODUCTS\n");
-                printf("========================================\n\n");
+                printf("\nEnter Product ID: ");
+                scanf("%d", &searchId);
 
-                printf("1. Sort by Price\n");
-                printf("2. Sort by Rating\n");
-                printf("3. Sort by Name\n");
-                printf("0. Back\n\n");
+                result = searchBST(root, searchId);
 
-                printf("Enter your choice: ");
-                scanf("%d", &sortChoice);
-
-                switch(sortChoice)
+                if(result == NULL)
                 {
-                    case 1:
-                        for(i = 0; i < productCount - 1; i++)
+                    printf("\nProduct not found.\n");
+                }
+                else
+                {
+                    for(int i = 0; i < productCount; i++)
+                    {
+                        if(products[i].id == result->productId)
                         {
-                            minIndex = i;
-
-                            for(j = i + 1; j < productCount; j++)
-                            {
-                                if(products[j].price < products[minIndex].price)
-                                {
-                                    minIndex = j;
-                                }
-                            }
-
-                            if(minIndex != i)
-                            {
-                                temp = products[i];
-                                products[i] = products[minIndex];
-                                products[minIndex] = temp;
-                            }
+                            printf("\nProduct Found using BST!\n");
+                            printf("ID       : %d\n", products[i].id);
+                            printf("Name     : %s\n", products[i].name);
+                            printf("Category : %s\n", products[i].category);
+                            printf("Price    : %.2f\n", products[i].price);
+                            printf("Rating   : %.1f\n", products[i].rating);
+                            printf("Stock    : %d\n", products[i].stock);
+                            break;
                         }
-
-                        printf("\nProducts sorted by price successfully!\n");
-                        break;
-
-                    case 2:
-                        for(i = 0; i < productCount - 1; i++)
-                        {
-                            minIndex = i;
-
-                            for(j = i + 1; j < productCount; j++)
-                            {
-                                if(products[j].rating > products[minIndex].rating)
-                                {
-                                    minIndex = j;
-                                }
-                            }
-
-                            if(minIndex != i)
-                            {
-                                temp = products[i];
-                                products[i] = products[minIndex];
-                                products[minIndex] = temp;
-                            }
-                        }
-
-                        printf("\nProducts sorted by rating successfully!\n");
-                        break;
-
-                    case 3:
-                        for(i = 0; i < productCount - 1; i++)
-                        {
-                            minIndex = i;
-
-                            for(j = i + 1; j < productCount; j++)
-                            {
-                                if(strcmp(products[j].name, products[minIndex].name) < 0)
-                                {
-                                    minIndex = j;
-                                }
-                            }
-
-                            if(minIndex != i)
-                            {
-                                temp = products[i];
-                                products[i] = products[minIndex];
-                                products[minIndex] = temp;
-                            }
-                        }
-
-                        printf("\nProducts sorted by name successfully!\n");
-                        break;
-
-                    case 0:
-                        printf("\nReturning to main menu...\n");
-                        break;
-
-                    default:
-                        printf("\nInvalid choice!\n");
+                    }
                 }
 
                 break;
             }
 
+
+            case 0:
+                printf("\nReturning to main menu...\n");
+                break;
+
+
+            default:
+                printf("\nInvalid choice!\n");
+        }
+
+    } while(searchChoice != 0);
+
+    break;
+}
+           case 4:
+{
+    int sortChoice;
+    int i, j, minIndex;
+    struct Product temp;
+
+    do
+    {
+        printf("\n========================================\n");
+        printf("           SORT PRODUCTS\n");
+        printf("========================================\n\n");
+
+        printf("1. Sort by Price\n");
+        printf("2. Sort by Rating\n");
+        printf("3. Sort by Name\n");
+        printf("0. Back\n\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &sortChoice);
+
+        switch(sortChoice)
+        {
+            case 1:
+                for(i = 0; i < productCount - 1; i++)
+                {
+                    minIndex = i;
+
+                    for(j = i + 1; j < productCount; j++)
+                    {
+                        if(products[j].price < products[minIndex].price)
+                        {
+                            minIndex = j;
+                        }
+                    }
+
+                    if(minIndex != i)
+                    {
+                        temp = products[i];
+                        products[i] = products[minIndex];
+                        products[minIndex] = temp;
+                    }
+                }
+
+                printf("\nProducts sorted by price successfully!\n");
+                break;
+
+
+            case 2:
+                for(i = 0; i < productCount - 1; i++)
+                {
+                    minIndex = i;
+
+                    for(j = i + 1; j < productCount; j++)
+                    {
+                        if(products[j].rating > products[minIndex].rating)
+                        {
+                            minIndex = j;
+                        }
+                    }
+
+                    if(minIndex != i)
+                    {
+                        temp = products[i];
+                        products[i] = products[minIndex];
+                        products[minIndex] = temp;
+                    }
+                }
+
+                printf("\nProducts sorted by rating successfully!\n");
+                break;
+
+
+            case 3:
+                for(i = 0; i < productCount - 1; i++)
+                {
+                    minIndex = i;
+
+                    for(j = i + 1; j < productCount; j++)
+                    {
+                        if(strcmp(products[j].name, products[minIndex].name) < 0)
+                        {
+                            minIndex = j;
+                        }
+                    }
+
+                    if(minIndex != i)
+                    {
+                        temp = products[i];
+                        products[i] = products[minIndex];
+                        products[minIndex] = temp;
+                    }
+                }
+
+                printf("\nProducts sorted by name successfully!\n");
+                break;
+
+
+            case 0:
+                printf("\nReturning to main menu...\n");
+                break;
+
+
+            default:
+                printf("\nInvalid choice!\n");
+        }
+
+    } while(sortChoice != 0);
+
+    break;
+}
             case 5:
             {
                 int cartChoice;
@@ -934,244 +954,96 @@ int main()
                 break;
             }
 
-            case 9:
-            {
-                int customerChoice;
+           case 9:
+{
+    int customerChoice;
 
-                printf("\n========================================\n");
-                printf("         CUSTOMER MANAGEMENT\n");
-                printf("========================================\n\n");
+    do
+    {
+        printf("\n========================================\n");
+        printf("         CUSTOMER MANAGEMENT\n");
+        printf("========================================\n\n");
 
-                printf("1. Add Customer\n");
-                printf("2. Display Customers\n");
-                printf("3. Search Customer\n");
-                printf("4. Update Customer\n");
-                printf("5. Delete Customer\n");
-                printf("0. Back\n\n");
+        printf("1. Add Customer\n");
+        printf("2. Display Customers\n");
+        printf("3. Search Customer\n");
+        printf("4. Update Customer\n");
+        printf("5. Delete Customer\n");
+        printf("0. Back\n\n");
 
-                printf("Enter your choice: ");
-                scanf("%d", &customerChoice);
+        printf("Enter your choice: ");
+        scanf("%d", &customerChoice);
 
-                switch(customerChoice)
+        switch(customerChoice)
+        {
+            case 1:
+                if(customerCount < 100)
                 {
-                    case 1:
-                        if(customerCount < 100)
-                        {
-                            printf("\nEnter Customer ID: ");
-                            scanf("%d", &customers[customerCount].id);
+                    printf("\nEnter Customer ID: ");
+                    scanf("%d", &customers[customerCount].id);
 
-                            printf("Enter Customer Name: ");
-                            scanf("%s", customers[customerCount].name);
+                    printf("Enter Customer Name: ");
+                    scanf("%s", customers[customerCount].name);
 
-                            printf("Enter Phone Number: ");
-                            scanf("%s", customers[customerCount].phone);
+                    printf("Enter Phone Number: ");
+                    scanf("%s", customers[customerCount].phone);
 
-                            printf("Enter Email: ");
-                            scanf("%s", customers[customerCount].email);
+                    printf("Enter Email: ");
+                    scanf("%s", customers[customerCount].email);
 
-                            customerCount++;
+                    customerCount++;
 
-                            printf("\nCustomer added successfully!\n");
-                        }
-                        else
-                        {
-                            printf("\nCustomer storage is full!\n");
-                        }
-
-                        break;
-
-                    case 2:
-                        if(customerCount == 0)
-                        {
-                            printf("\nNo customers available.\n");
-                        }
-                        else
-                        {
-                            printf("\n========================================\n");
-                            printf("          CUSTOMER LIST\n");
-                            printf("========================================\n");
-
-                            for(int i = 0; i < customerCount; i++)
-                            {
-                                printf("\nCustomer %d\n", i + 1);
-                                printf("ID    : %d\n", customers[i].id);
-                                printf("Name  : %s\n", customers[i].name);
-                                printf("Phone : %s\n", customers[i].phone);
-                                printf("Email : %s\n", customers[i].email);
-                            }
-                        }
-
-                        break;
-
-                    case 3:
-                    {
-                        int searchId;
-                        int found = 0;
-
-                        printf("\nEnter Customer ID: ");
-                        scanf("%d", &searchId);
-
-                        for(int i = 0; i < customerCount; i++)
-                        {
-                            if(customers[i].id == searchId)
-                            {
-                                printf("\nCustomer Found!\n");
-                                printf("ID    : %d\n", customers[i].id);
-                                printf("Name  : %s\n", customers[i].name);
-                                printf("Phone : %s\n", customers[i].phone);
-                                printf("Email : %s\n", customers[i].email);
-
-                                found = 1;
-                                break;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nCustomer not found.\n");
-                        }
-
-                        break;
-                    }
-
-                    case 4:
-                    {
-                        int updateId;
-                        int found = 0;
-
-                        printf("\nEnter Customer ID to update: ");
-                        scanf("%d", &updateId);
-
-                        for(int i = 0; i < customerCount; i++)
-                        {
-                            if(customers[i].id == updateId)
-                            {
-                                printf("\nEnter New Customer Name: ");
-                                scanf("%s", customers[i].name);
-
-                                printf("Enter New Phone: ");
-                                scanf("%s", customers[i].phone);
-
-                                printf("Enter New Email: ");
-                                scanf("%s", customers[i].email);
-
-                                printf("\nCustomer updated successfully!\n");
-
-                                found = 1;
-                                break;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nCustomer not found.\n");
-                        }
-
-                        break;
-                    }
-
-                    case 5:
-                    {
-                        int deleteId;
-                        int found = 0;
-
-                        printf("\nEnter Customer ID to delete: ");
-                        scanf("%d", &deleteId);
-
-                        for(int i = 0; i < customerCount; i++)
-                        {
-                            if(customers[i].id == deleteId)
-                            {
-                                for(int j = i; j < customerCount - 1; j++)
-                                {
-                                    customers[j] = customers[j + 1];
-                                }
-
-                                customerCount--;
-
-                                printf("\nCustomer deleted successfully!\n");
-
-                                found = 1;
-                                break;
-                            }
-                        }
-
-                        if(found == 0)
-                        {
-                            printf("\nCustomer not found.\n");
-                        }
-
-                        break;
-                    }
-
-                    case 0:
-                        printf("\nReturning to main menu...\n");
-                        break;
-
-                    default:
-                        printf("\nInvalid choice!\n");
-                }
-
-                break;
-            }
-
-            case 10:
-                printf("\nBST Inorder Traversal: ");
-                inorderBST(root);
-                printf("\n");
-                break;
-
-            case 11:
-            {
-                int deleteId;
-                struct BSTNode *result;
-
-                printf("\nEnter Product ID to delete from BST: ");
-                scanf("%d", &deleteId);
-
-                result = searchBST(root, deleteId);
-
-                if(result == NULL)
-                {
-                    printf("\nProduct ID not found in BST.\n");
+                    printf("\nCustomer added successfully!\n");
                 }
                 else
                 {
-                    root = deleteBST(root, deleteId);
-                    printf("\nProduct ID deleted from BST successfully!\n");
+                    printf("\nCustomer storage is full!\n");
                 }
 
                 break;
-            }
 
-            case 12:
+
+            case 2:
+                if(customerCount == 0)
+                {
+                    printf("\nNo customers available.\n");
+                }
+                else
+                {
+                    printf("\n========================================\n");
+                    printf("          CUSTOMER LIST\n");
+                    printf("========================================\n");
+
+                    for(int i = 0; i < customerCount; i++)
+                    {
+                        printf("\nCustomer %d\n", i + 1);
+                        printf("ID    : %d\n", customers[i].id);
+                        printf("Name  : %s\n", customers[i].name);
+                        printf("Phone : %s\n", customers[i].phone);
+                        printf("Email : %s\n", customers[i].email);
+                    }
+                }
+
+                break;
+
+
+            case 3:
             {
-                int updateId;
+                int searchId;
                 int found = 0;
 
-                printf("\nEnter Product ID to update: ");
-                scanf("%d", &updateId);
+                printf("\nEnter Customer ID: ");
+                scanf("%d", &searchId);
 
-                for(int i = 0; i < productCount; i++)
+                for(int i = 0; i < customerCount; i++)
                 {
-                    if(products[i].id == updateId)
+                    if(customers[i].id == searchId)
                     {
-                        printf("\nEnter New Product Name: ");
-                        scanf("%s", products[i].name);
-
-                        printf("Enter New Category: ");
-                        scanf("%s", products[i].category);
-
-                        printf("Enter New Price: ");
-                        scanf("%f", &products[i].price);
-
-                        printf("Enter New Rating: ");
-                        scanf("%f", &products[i].rating);
-
-                        printf("Enter New Stock: ");
-                        scanf("%d", &products[i].stock);
-
-                        printf("\nProduct updated successfully!\n");
+                        printf("\nCustomer Found!\n");
+                        printf("ID    : %d\n", customers[i].id);
+                        printf("Name  : %s\n", customers[i].name);
+                        printf("Phone : %s\n", customers[i].phone);
+                        printf("Email : %s\n", customers[i].email);
 
                         found = 1;
                         break;
@@ -1180,34 +1052,83 @@ int main()
 
                 if(found == 0)
                 {
-                    printf("\nProduct not found.\n");
+                    printf("\nCustomer not found.\n");
                 }
 
                 break;
             }
 
-            case 13:
+
+          case 4:
+{
+    int updateId;
+    int found = 0;
+
+    printf("\nEnter Customer ID to update: ");
+    scanf("%d", &updateId);
+
+    for(int i = 0; i < customerCount; i++)
+    {
+        if(customers[i].id == updateId)
+        {
+            printf("\nCurrent Customer Details\n");
+            printf("----------------------------\n");
+            printf("ID    : %d\n", customers[i].id);
+            printf("Name  : %s\n", customers[i].name);
+            printf("Phone : %s\n", customers[i].phone);
+            printf("Email : %s\n", customers[i].email);
+
+            printf("\nEnter New Customer Name: ");
+            scanf("%s", customers[i].name);
+
+            printf("Enter New Phone: ");
+            scanf("%s", customers[i].phone);
+
+            printf("Enter New Email: ");
+            scanf("%s", customers[i].email);
+
+            printf("\nCustomer updated successfully!\n");
+
+            printf("\nUpdated Customer Details\n");
+            printf("----------------------------\n");
+            printf("ID    : %d\n", customers[i].id);
+            printf("Name  : %s\n", customers[i].name);
+            printf("Phone : %s\n", customers[i].phone);
+            printf("Email : %s\n", customers[i].email);
+
+            found = 1;
+            break;
+        }
+    }
+
+    if(found == 0)
+    {
+        printf("\nCustomer not found.\n");
+    }
+
+    break;
+}
+
+            case 5:
             {
                 int deleteId;
                 int found = 0;
 
-                printf("\nEnter Product ID to delete: ");
+                printf("\nEnter Customer ID to delete: ");
                 scanf("%d", &deleteId);
 
-                for(int i = 0; i < productCount; i++)
+                for(int i = 0; i < customerCount; i++)
                 {
-                    if(products[i].id == deleteId)
+                    if(customers[i].id == deleteId)
                     {
-                        for(int j = i; j < productCount - 1; j++)
+                        for(int j = i; j < customerCount - 1; j++)
                         {
-                            products[j] = products[j + 1];
+                            customers[j] = customers[j + 1];
                         }
 
-                        productCount--;
+                        customerCount--;
 
-                        root = deleteBST(root, deleteId);
-
-                        printf("\nProduct deleted successfully!\n");
+                        printf("\nCustomer deleted successfully!\n");
 
                         found = 1;
                         break;
@@ -1216,11 +1137,110 @@ int main()
 
                 if(found == 0)
                 {
-                    printf("\nProduct not found.\n");
+                    printf("\nCustomer not found.\n");
                 }
 
                 break;
             }
+
+
+            case 0:
+                printf("\nReturning to main menu...\n");
+                break;
+
+
+            default:
+                printf("\nInvalid choice!\n");
+        }
+
+    } while(customerChoice != 0);
+
+    break;
+}
+
+                        case 10: 
+                printf("\nBST Inorder Traversal: "); 
+                inorderBST(root); 
+                printf("\n"); 
+                break; 
+
+            case 11: 
+            { 
+                int updateId; 
+                int found = 0; 
+
+                printf("\nEnter Product ID to update: "); 
+                scanf("%d", &updateId); 
+
+                for(int i = 0; i < productCount; i++) 
+                { 
+                    if(products[i].id == updateId) 
+                    { 
+                        printf("\nEnter New Product Name: "); 
+                        scanf("%s", products[i].name); 
+
+                        printf("Enter New Category: "); 
+                        scanf("%s", products[i].category); 
+
+                        printf("Enter New Price: "); 
+                        scanf("%f", &products[i].price); 
+
+                        printf("Enter New Rating: "); 
+                        scanf("%f", &products[i].rating); 
+
+                        printf("Enter New Stock: "); 
+                        scanf("%d", &products[i].stock); 
+
+                        printf("\nProduct updated successfully!\n"); 
+
+                        found = 1; 
+                        break; 
+                    } 
+                } 
+
+                if(found == 0) 
+                { 
+                    printf("\nProduct not found.\n"); 
+                } 
+
+                break; 
+            } 
+
+            case 12: 
+            { 
+                int deleteId; 
+                int found = 0; 
+
+                printf("\nEnter Product ID to delete: "); 
+                scanf("%d", &deleteId); 
+
+                for(int i = 0; i < productCount; i++) 
+                { 
+                    if(products[i].id == deleteId) 
+                    { 
+                        for(int j = i; j < productCount - 1; j++) 
+                        { 
+                            products[j] = products[j + 1]; 
+                        } 
+
+                        productCount--; 
+
+                        root = deleteBST(root, deleteId); 
+
+                        printf("\nProduct deleted successfully!\n"); 
+
+                        found = 1; 
+                        break; 
+                    } 
+                } 
+
+                if(found == 0) 
+                { 
+                    printf("\nProduct not found.\n"); 
+                } 
+
+                break; 
+            } 
 
             case 0:
                 printf("\nThank you for using Smart E-Commerce System.\n");
