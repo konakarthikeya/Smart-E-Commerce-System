@@ -1,20 +1,12 @@
 #ifndef PURCHASE_H
 #define PURCHASE_H
 
+#include "cart.h"
+
 struct PurchaseNode
 {
     int productId;
     struct PurchaseNode *next;
-};
-
-struct Product
-{
-    int id;
-    char name[50];
-    char category[30];
-    float price;
-    float rating;
-    int stock;
 };
 
 void purchaseProducts(struct CartNode **cart,
