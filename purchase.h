@@ -1,13 +1,7 @@
 #ifndef PURCHASE_H
 #define PURCHASE_H
 
-#include "cart.h"
-
-struct PurchaseNode
-{
-    int productId;
-    struct PurchaseNode *next;
-};
+#include "structures.h"
 
 void purchaseProducts(struct CartNode **cart,
                       struct PurchaseNode **purchaseHistory,
