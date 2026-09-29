@@ -1,97 +1,157 @@
-# Smart E-Commerce Product Search and Recommendation System
+Smart E-Commerce Product Search and Recommendation System
 
-## Project Overview
+Project Overview
 
-The Smart E-Commerce Product Search and Recommendation System is a console-based application developed in C.
+The Smart E-Commerce Product Search and Recommendation System is a console-based application developed using the C programming language. The project demonstrates the practical application of Data Structures and Algorithms (DSA) in an e-commerce environment.
 
-The project demonstrates the practical use of Data Structures and Algorithms in an e-commerce environment. It provides product management, searching, sorting, shopping cart operations, purchase history, customer management, and product recommendations.
+It provides features such as product management, searching, sorting, shopping cart management, purchasing, purchase history, customer management, and product recommendations.
 
-## Team Members
+The main objective of this project is to demonstrate how data structures and algorithms can be used to build an efficient product search and recommendation system.
 
-1. Sowjanya
-2. Jaswanth
-3. Karthikeya
-4. Keerthi
+Team Members
 
+- Sowjanya
+- Jaswanth
+- Karthikeya
+- Keerthi
 
-## Features
+Features
 
-* Add and display products
-* Search products by ID, name, and category
-* Search products using a Binary Search Tree (BST)
-* Sort products by price, rating, and name
-* Add and remove products from the shopping cart
-* Purchase products and update stock
-* Maintain purchase history
-* Generate category-based product recommendations
-* Add, search, update, and delete customers
-* Display and manage the Binary Search Tree
-* Update and delete products
+1. Product Management
 
-## Data Structures Used
+- Add new products.
+- Display available products.
+- Update product details.
+- Delete products.
+- Manage product information such as ID, name, category, brand, type, price, rating, and stock quantity.
 
-### Array
+2. Product Search
 
-Used to store product and customer information.
+- Search products by product ID.
+- Search products by name.
+- Search products by category.
+- Use a Binary Search Tree (BST) for product ID searching.
 
-### Linked List
+3. Product Sorting
 
-Used for:
+- Sort products by price.
+- Sort products by rating.
+- Sort products by name.
+- Use selection sort for sorting operations.
 
-* Shopping cart
-* Purchase history
+4. Shopping Cart
 
-### Binary Search Tree
+- Add products to the cart.
+- Remove products from the cart.
+- Manage product quantities in the cart.
+- Display cart contents.
 
-Used to store product IDs and perform product searching and deletion.
+5. Purchase Management
 
-## Algorithms Used
+- Purchase products from the cart.
+- Update product stock after purchase.
+- Generate a purchase bill.
+- Maintain purchase history.
 
-### Searching
+6. Customer Management
 
-* Linear Search
-* Binary Search Tree Search
+- Add new customers.
+- Search for customers.
+- Update customer details.
+- Delete customer records.
+- Display customer information.
 
-### Sorting
+7. Product Recommendation
 
-* Selection Sort for:
+- Recommend products based on purchase information.
+- Prioritize products with matching brand and type, where applicable.
+- Consider matching product types and categories.
+- Exclude products that have already been purchased or are out of stock, where implemented.
 
-  * Price
-  * Rating
-  * Product Name
+8. Binary Search Tree
 
-### Tree Operations
+- Insert product IDs into a BST.
+- Search for products using the BST.
+- Display product IDs using inorder traversal.
+- Delete product IDs from the BST.
 
-* BST Insertion
-* BST Search
-* BST Inorder Traversal
-* BST Deletion
+Data Structures Used
 
-## Recommendation System
+1. Arrays
 
-The recommendation module uses a rule-based approach.
+Arrays are used to store product and customer information.
 
-Products belonging to categories purchased by the customer are considered for recommendations. Already purchased products and out-of-stock products are excluded from the recommendations.
+2. Linked Lists
 
-## Technologies Used
+Linked lists are used for managing shopping cart items and purchase history.
 
-* Programming Language: C
-* IDE: Dev-C++
-* Data Structures: Arrays, Linked Lists, Binary Search Tree
-* Platform: Console / Terminal
+3. Binary Search Tree (BST)
 
-## Project Structure
+A Binary Search Tree is used to organize product IDs and support searching, insertion, traversal, and deletion operations.
 
-```text
+Algorithms Used
+
+- Linear Search: Used to search for products and customers.
+- BST Search: Used to search for products by ID.
+- Selection Sort: Used to sort products by price, rating, and name.
+- BST Insertion: Used to insert product IDs into the tree.
+- Inorder Traversal: Used to display product IDs in sorted order.
+- BST Deletion: Used to remove product IDs from the tree.
+- Rule-Based Recommendation: Used to recommend products based on product attributes and purchase information.
+
+Technologies Used
+
+- Programming Language: C
+- IDE: Dev-C++
+- Compiler: TDM-GCC
+- Data Structures: Arrays, Linked Lists, Binary Search Trees
+- Application Type: Console-Based Application
+
+Project Structure
+
 Smart-E-Commerce-System/
 │
-└── main.c
-```
+├── main.c
+├── structures.h
+│
+├── bst.c
+├── bst.h
+│
+├── cart.c
+├── cart.h
+│
+├── customer.c
+├── customer.h
+│
+├── purchase.c
+├── purchase.h
+│
+├── search_sort.c
+├── search_sort.h
+│
+├── recommendation.c
+└── recommendation.h
 
-## Purpose
+How to Run the Project
 
-The main purpose of this project is to demonstrate how Data Structures and Algorithms can be applied to build a practical e-commerce system.
+1. Clone or download this repository.
+2. Open Dev-C++.
+3. Open the project source files.
+4. Make sure all ".c" files are included in the compilation.
+5. Compile the program.
+6. Run the executable.
+7. Use the console menu to access the available features.
 
-The project focuses on understanding and implementing DSA concepts rather than creating a simple CRUD application.
+Objective
 
+The objective of this project is to apply Data Structures and Algorithms to a real-world e-commerce scenario. It demonstrates how arrays, linked lists, and Binary Search Trees can be used for product management, searching, sorting, cart operations, purchase history, and recommendations.
 
+The project focuses on demonstrating DSA concepts through a practical application rather than implementing only basic CRUD operations.
+
+Repository
+
+GitHub: https://github.com/konakarthikeya/Smart-E-Commerce-System
+
+Conclusion
+
+The Smart E-Commerce Product Search and Recommendation System demonstrates the use of fundamental Data Structures and Algorithms in an e-commerce application. It combines product and customer management with searching, sorting, shopping cart operations, purchasing, and product recommendations in a modular C program.
