@@ -15,14 +15,13 @@ void searchProductById(struct Product products[], int productCount)
         if(products[i].id == id)
         {
             printf("\nProduct Found!\n");
-           printf("ID       : %d\n", products[i].id);
-printf("Brand    : %s\n", products[i].brand);
-printf("Name     : %s\n", products[i].name);
-printf("Type     : %s\n", products[i].type);
-printf("Category : %s\n", products[i].category);
-printf("Price    : %.2f\n", products[i].price);
-printf("Rating   : %.2f\n", products[i].rating);
-printf("Stock    : %d\n", products[i].stock);
+            printf("ID       : %d\n", products[i].id);
+            printf("Name     : %s\n", products[i].name);
+            printf("Category : %s\n", products[i].category);
+            printf("Price    : %.2f\n", products[i].price);
+            printf("Rating   : %.2f\n", products[i].rating);
+            printf("Stock    : %d\n", products[i].stock);
+
             found = 1;
             break;
         }
@@ -47,14 +46,12 @@ void searchProductByName(struct Product products[], int productCount)
         if(strcmp(products[i].name, name) == 0)
         {
             printf("\nProduct Found!\n");
-           printf("ID       : %d\n", products[i].id);
-printf("Brand    : %s\n", products[i].brand);
-printf("Name     : %s\n", products[i].name);
-printf("Type     : %s\n", products[i].type);
-printf("Category : %s\n", products[i].category);
-printf("Price    : %.2f\n", products[i].price);
-printf("Rating   : %.2f\n", products[i].rating);
-printf("Stock    : %d\n", products[i].stock);
+            printf("ID       : %d\n", products[i].id);
+            printf("Name     : %s\n", products[i].name);
+            printf("Category : %s\n", products[i].category);
+            printf("Price    : %.2f\n", products[i].price);
+            printf("Rating   : %.2f\n", products[i].rating);
+            printf("Stock    : %d\n", products[i].stock);
 
             found = 1;
         }
@@ -79,14 +76,12 @@ void searchProductByCategory(struct Product products[], int productCount)
         if(strcmp(products[i].category, category) == 0)
         {
             printf("\nProduct Found!\n");
-           printf("ID       : %d\n", products[i].id);
-printf("Brand    : %s\n", products[i].brand);
-printf("Name     : %s\n", products[i].name);
-printf("Type     : %s\n", products[i].type);
-printf("Category : %s\n", products[i].category);
-printf("Price    : %.2f\n", products[i].price);
-printf("Rating   : %.2f\n", products[i].rating);
-printf("Stock    : %d\n", products[i].stock);
+            printf("ID       : %d\n", products[i].id);
+            printf("Name     : %s\n", products[i].name);
+            printf("Category : %s\n", products[i].category);
+            printf("Price    : %.2f\n", products[i].price);
+            printf("Rating   : %.2f\n", products[i].rating);
+            printf("Stock    : %d\n", products[i].stock);
 
             found = 1;
         }
@@ -116,14 +111,13 @@ void searchProductByBST(struct Product products[], int productCount, struct BSTN
             if(products[i].id == id)
             {
                 printf("\nProduct Found using BST!\n");
-               printf("ID       : %d\n", products[i].id);
-printf("Brand    : %s\n", products[i].brand);
-printf("Name     : %s\n", products[i].name);
-printf("Type     : %s\n", products[i].type);
-printf("Category : %s\n", products[i].category);
-printf("Price    : %.2f\n", products[i].price);
-printf("Rating   : %.2f\n", products[i].rating);
-printf("Stock    : %d\n", products[i].stock);
+                printf("ID       : %d\n", products[i].id);
+                printf("Name     : %s\n", products[i].name);
+                printf("Category : %s\n", products[i].category);
+                printf("Price    : %.2f\n", products[i].price);
+                printf("Rating   : %.2f\n", products[i].rating);
+                printf("Stock    : %d\n", products[i].stock);
+
                 found = 1;
                 break;
             }

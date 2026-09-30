@@ -1,8 +1,17 @@
 #ifndef SEARCH_SORT_H
 #define SEARCH_SORT_H
 
-#include "structures.h"
 #include "bst.h"
+
+struct Product
+{
+    int id;
+    char name[50];
+    char category[30];
+    float price;
+    float rating;
+    int stock;
+};
 
 void searchProductById(struct Product products[], int productCount);
 void searchProductByName(struct Product products[], int productCount);
