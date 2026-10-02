@@ -1,6 +1,34 @@
 #include <stdio.h>
 #include <string.h>
 #include "search_sort.h"
+#include "input.h"
+
+int compareIgnoreCase(char str1[], char str2[])
+{
+    int i = 0;
+
+    while(str1[i] != '\0' && str2[i] != '\0')
+    {
+        char c1 = str1[i];
+        char c2 = str2[i];
+
+        if(c1 >= 'A' && c1 <= 'Z')
+            c1 = c1 + 32;
+
+        if(c2 >= 'A' && c2 <= 'Z')
+            c2 = c2 + 32;
+
+        if(c1 != c2)
+            return 0;
+
+        i++;
+    }
+
+    if(str1[i] == '\0' && str2[i] == '\0')
+        return 1;
+
+    return 0;
+}
 
 void searchProductById(struct Product products[], int productCount)
 {
@@ -9,6 +37,7 @@ void searchProductById(struct Product products[], int productCount)
 
     printf("\nEnter Product ID: ");
     scanf("%d", &id);
+    clearInputBuffer();
 
     for(int i = 0; i < productCount; i++)
     {
@@ -16,7 +45,9 @@ void searchProductById(struct Product products[], int productCount)
         {
             printf("\nProduct Found!\n");
             printf("ID       : %d\n", products[i].id);
+            printf("Brand    : %s\n", products[i].brand);
             printf("Name     : %s\n", products[i].name);
+            printf("Type     : %s\n", products[i].type);
             printf("Category : %s\n", products[i].category);
             printf("Price    : %.2f\n", products[i].price);
             printf("Rating   : %.2f\n", products[i].rating);
@@ -39,15 +70,17 @@ void searchProductByName(struct Product products[], int productCount)
     int found = 0;
 
     printf("\nEnter Product Name: ");
-    scanf("%s", name);
+    readString(name, 50);
 
     for(int i = 0; i < productCount; i++)
     {
-        if(strcmp(products[i].name, name) == 0)
+        if(compareIgnoreCase(products[i].name, name))
         {
             printf("\nProduct Found!\n");
             printf("ID       : %d\n", products[i].id);
+            printf("Brand    : %s\n", products[i].brand);
             printf("Name     : %s\n", products[i].name);
+            printf("Type     : %s\n", products[i].type);
             printf("Category : %s\n", products[i].category);
             printf("Price    : %.2f\n", products[i].price);
             printf("Rating   : %.2f\n", products[i].rating);
@@ -69,7 +102,7 @@ void searchProductByCategory(struct Product products[], int productCount)
     int found = 0;
 
     printf("\nEnter Category: ");
-    scanf("%s", category);
+    readString(category, 30);
 
     for(int i = 0; i < productCount; i++)
     {
@@ -77,7 +110,9 @@ void searchProductByCategory(struct Product products[], int productCount)
         {
             printf("\nProduct Found!\n");
             printf("ID       : %d\n", products[i].id);
+            printf("Brand    : %s\n", products[i].brand);
             printf("Name     : %s\n", products[i].name);
+            printf("Type     : %s\n", products[i].type);
             printf("Category : %s\n", products[i].category);
             printf("Price    : %.2f\n", products[i].price);
             printf("Rating   : %.2f\n", products[i].rating);
@@ -101,6 +136,7 @@ void searchProductByBST(struct Product products[], int productCount, struct BSTN
 
     printf("\nEnter Product ID: ");
     scanf("%d", &id);
+    clearInputBuffer();
 
     result = searchBST(root, id);
 
@@ -112,7 +148,9 @@ void searchProductByBST(struct Product products[], int productCount, struct BSTN
             {
                 printf("\nProduct Found using BST!\n");
                 printf("ID       : %d\n", products[i].id);
+                printf("Brand    : %s\n", products[i].brand);
                 printf("Name     : %s\n", products[i].name);
+                printf("Type     : %s\n", products[i].type);
                 printf("Category : %s\n", products[i].category);
                 printf("Price    : %.2f\n", products[i].price);
                 printf("Rating   : %.2f\n", products[i].rating);

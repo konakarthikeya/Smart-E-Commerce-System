@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "customer.h"
+#include "input.h"
 
 void addCustomer(struct Customer customers[], int *customerCount)
 {
@@ -7,15 +8,16 @@ void addCustomer(struct Customer customers[], int *customerCount)
     {
         printf("\nEnter Customer ID: ");
         scanf("%d", &customers[*customerCount].id);
+        clearInputBuffer();
 
         printf("Enter Customer Name: ");
-        scanf("%s", customers[*customerCount].name);
+        readString(customers[*customerCount].name, 50);
 
         printf("Enter Phone Number: ");
-        scanf("%s", customers[*customerCount].phone);
+        readString(customers[*customerCount].phone, 20);
 
         printf("Enter Email: ");
-        scanf("%s", customers[*customerCount].email);
+        readString(customers[*customerCount].email, 50);
 
         (*customerCount)++;
 
@@ -57,6 +59,7 @@ void searchCustomer(struct Customer customers[], int customerCount)
 
     printf("\nEnter Customer ID: ");
     scanf("%d", &searchId);
+    clearInputBuffer();
 
     for(int i = 0; i < customerCount; i++)
     {
@@ -86,6 +89,7 @@ void updateCustomer(struct Customer customers[], int customerCount)
 
     printf("\nEnter Customer ID to update: ");
     scanf("%d", &updateId);
+    clearInputBuffer();
 
     for(int i = 0; i < customerCount; i++)
     {
@@ -99,13 +103,13 @@ void updateCustomer(struct Customer customers[], int customerCount)
             printf("Email : %s\n", customers[i].email);
 
             printf("\nEnter New Customer Name: ");
-            scanf("%s", customers[i].name);
+            readString(customers[i].name, 50);
 
             printf("Enter New Phone: ");
-            scanf("%s", customers[i].phone);
+            readString(customers[i].phone, 20);
 
             printf("Enter New Email: ");
-            scanf("%s", customers[i].email);
+            readString(customers[i].email, 50);
 
             printf("\nCustomer updated successfully!\n");
 
@@ -132,8 +136,9 @@ void deleteCustomer(struct Customer customers[], int *customerCount)
     int deleteId;
     int found = 0;
 
-    printf("\nEnter Customer ID to delete: ");
-    scanf("%d", &deleteId);
+   printf("\nEnter Customer ID to delete: ");
+scanf("%d", &deleteId);
+clearInputBuffer();
 
     for(int i = 0; i < *customerCount; i++)
     {

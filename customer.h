@@ -1,13 +1,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-struct Customer
-{
-    int id;
-    char name[50];
-    char phone[20];
-    char email[50];
-};
+#include "structures.h"
 
 void addCustomer(struct Customer customers[], int *customerCount);
 void displayCustomers(struct Customer customers[], int customerCount);
